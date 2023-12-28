@@ -1,4 +1,4 @@
-package log
+package logger
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 
 func TestLogLevel(t *testing.T) {
 	const subsystem = "log-level-test"
-	logger := Logger(subsystem)
+	logger := NewLogger(subsystem)
 	reader := NewPipeReader()
 	done := make(chan struct{})
 	go func() {

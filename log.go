@@ -1,6 +1,6 @@
 // Package log is the logging library used by IPFS & libp2p
 // (https://github.com/ipfs/go-ipfs).
-package log
+package logger
 
 import (
 	"time"
@@ -26,14 +26,14 @@ type StandardLogger interface {
 	Warnf(format string, args ...interface{})
 }
 
-// EventLogger extends the StandardLogger interface to allow for log items
+// Logger extends the StandardLogger interface to allow for log items
 // containing structured metadata
-type EventLogger interface {
+type Logger interface {
 	StandardLogger
 }
 
-// Logger retrieves an event logger by name
-func Logger(system string) *ZapEventLogger {
+// NewLogger retrieves an event logger by name
+func NewLogger(system string) *ZapEventLogger {
 	if len(system) == 0 {
 		setuplog := getLogger("setup-logger")
 		setuplog.Error("Missing name parameter")
@@ -50,7 +50,7 @@ func Logger(system string) *ZapEventLogger {
 	}
 }
 
-// ZapEventLogger implements the EventLogger and wraps a go-logging Logger
+// ZapEventLogger implements the Logger and wraps a go-logging Logger
 type ZapEventLogger struct {
 	zap.SugaredLogger
 	// used to fix the caller location when calling Warning and Warningf.

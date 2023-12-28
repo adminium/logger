@@ -1,4 +1,4 @@
-module github.com/ipfs/go-log/v2
+module github.com/adminium/logger
 
 require (
 	github.com/mattn/go-isatty v0.0.14

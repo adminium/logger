@@ -1,6 +1,6 @@
 //go:build windows
 
-package log
+package logger
 
 import (
 	"fmt"
