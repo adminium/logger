@@ -78,7 +78,7 @@ var ErrNoSuchLogger = errors.New("error: No such logger")
 
 var loggerMutex sync.RWMutex // guards access to global logger state
 
-// loggers is the set of loggers in the system
+// loggers is the set of loggers in the module
 var loggers = make(map[string]*zap.SugaredLogger)
 var levels = make(map[string]zap.AtomicLevel)
 
@@ -244,9 +244,9 @@ func SetLogLevelRegex(e, l string) error {
 	return nil
 }
 
-// GetSubsystems returns a slice containing the
+// GetModules returns a slice containing the
 // names of the current loggers
-func GetSubsystems() []string {
+func GetModules() []string {
 	loggerMutex.RLock()
 	defer loggerMutex.RUnlock()
 	subs := make([]string, 0, len(loggers))
