@@ -1,5 +1,3 @@
-// Package log is the logging library used by IPFS & libp2p
-// (https://github.com/ipfs/go-ipfs).
 package logger
 
 import (
@@ -24,12 +22,6 @@ type StandardLogger interface {
 	Panicf(format string, args ...interface{})
 	Warn(args ...interface{})
 	Warnf(format string, args ...interface{})
-}
-
-// EventLogger extends the StandardLogger interface to allow for log items
-// containing structured metadata
-type EventLogger interface {
-	StandardLogger
 }
 
 // NewLogger retrieves an event logger by name

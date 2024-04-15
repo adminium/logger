@@ -101,6 +101,10 @@ func (l *lockedMultiCore) ReplaceCore(original, replacement zapcore.Core) {
 	}
 }
 
+func NewCore(format LogFormat, ws zapcore.WriteSyncer, level LogLevel) zapcore.Core {
+	return newCore(format, ws, level)
+}
+
 func newCore(format LogFormat, ws zapcore.WriteSyncer, level LogLevel) zapcore.Core {
 	encCfg := zap.NewProductionEncoderConfig()
 	encCfg.EncodeTime = zapcore.ISO8601TimeEncoder
